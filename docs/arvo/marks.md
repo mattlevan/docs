@@ -7,10 +7,9 @@ title: Marks
 
 # Marks
 
-We've used predefined marks already, but we haven't yet created
-our own marks.  Let's write a sample mark of our own, then chain
-it together with some preexisting ones to have fun with type
-conversions.
+We've used predefined marks already, but we haven't yet created our own marks. 
+Let's write a sample mark of our own, then chain it together with some 
+preexisting ones to have fun with type conversions.
 
 Let's make a small "examples-cord" mark.  "Cord" is a name we use for `@t`
 text, but there's no predefined mark for it.  Let's put the following code in:
@@ -25,7 +24,7 @@ text, but there's no predefined mark for it.  Let's put the following code in:
   --
 ++  grow
   |%
-  ++  atom  (@ cod)
+  ++  atom  `@`cod
   --
 --
 ```
@@ -46,9 +45,9 @@ atom as an unsigned decimal number, so we give `%ud` and the given argument
 to `++scot`. Thus, the form of an arm in `++grab` is
 `|=(other-mark-type this-mark-value)`.
 
-In `++grow`, we write an arm to convert from a cord (`@t`) to an atom (`@`) by 
-using `@` as a function for casting, also known as "clamming". We could cast 
-our cord using tick marks too.
+In `++grow`, we need to write an arm that specifies how to convert from the 
+current mark to another one. To do this, we simply cast our cord to an atom 
+and return it directly.
 
 Let's play around a bit with this mark. First, let's take a marked atom and 
 convert it to our new mark.
@@ -67,8 +66,8 @@ back and forth between marks be inverses of each other. These are semantic
 conversions, in that they refer to the same concept. They're not isomorphisms.
 
 We can add as many arms as we'd like to both `++grab` and `++grow`. Let's add 
-an arm to `++grow` which allows us to convert cords to markdown. Now, let's edit
-our `cord.hoon` file's `++grow` arm so it looks like this:
+an arm to `++grow` which allows us to convert cords to markdown. Our 
+`cord.hoon` file's `++grow` arm should now look like this:
 
 ```
 ++  grow
@@ -80,10 +79,10 @@ our `cord.hoon` file's `++grow` arm so it looks like this:
 ```
 
 We've added a new arm `++md` to our `++grow` arm. It simply converts our 
-cord to markdown by returning `cod` driectly. The reason this works is because, 
+cord to markdown by returning `cod` directly. The reason this works is because, 
 if you check out `mar/md.hoon`, we can see that both `md` and our `cord` marks 
-deal with `@t` data. Why convert a `@t` to a `@t`? It's redundant! Perfect, 
-then. What we should be able to do now is convert from `cord` to `md` now.
+deal with `@t` data. Why cast a `@t` to a `@t`? It's redundant! Perfect, then.
+What we should be able to do now is convert from `cord` to `md`.
 
 Let's play around a little more, having added our new `++md` arm:
 
@@ -128,6 +127,8 @@ ford: casting %noun to %examples-cord
 ford: cast %examples-cord
 ```
 
-Likewise, in order to convert `examples-cord` to `&mime`, we must explicitly 
-call each mark in the proper order.
-
+Using marks, we've been able to convert, step-by-step, a lowly atom of `17` 
+into a complete plain-text html blob. We started with the atom, passed it to 
+our `&examples-cord` (which we defined in `mar/examples/cord.hoon`), 
+converted that to `&md`, then to `&hymn` and finally to `&mime`, resulting 
+in plain-text html.
