@@ -91,43 +91,45 @@ Let's check out the code for Euler 1. First, the problem:
 Here is the hoon solution (which should be in your pier directory under
 `/examples/gen/project-euler/p1`):
 
-    ::  Project Euler 1
-    ::  https://projecteuler.net/problem=1
-    ::
-    ::  run in dojo with:
-    ::    ~your-urbit:dojo/examples> +project-euler/p1
-    ::
-    ::::  /===/gen/project-euler/p1/hoon
-      ::  
-    !:
-    ::
-    :-  %say  |=  *
-    :-  %noun
-    =<  (sum 1.000)
-    ::
-    |%
-    ++  three
-      |=  a/@ 
-      =|  b/@ 
-      |-  ^-  @u  
-      ?:  (lth a b)
-        0   
-      (add b $(b (add 3 b)))
-    ::
-    ++  five
-      |=  a/@ 
-      =|  b/@ 
-      |-  ^-  @
-      ?:  (lte a b)
-        0   
-      ?:  =((mod b 3) 0)
-        $(b (add b 5)) 
-      (add b $(b (add b 5)))
-    ::
-    ++  sum 
-      |=  a/@u
-      (add (five a) (three a)) 
-    --
+```
+::  Project Euler 1                                     ::  1
+::  https://projecteuler.net/problem=1                  ::  2
+::                                                      ::  3
+::  run in dojo with:                                   ::  4
+::    ~your-urbit:dojo/examples> +project-euler/p1      ::  5
+::                                                      ::  6
+::::  /===/gen/project-euler/p1/hoon                    ::  7
+  ::                                                    ::  8
+!:                                                      ::  9
+::                                                      ::  10
+:-  %say  |=  *                                         ::  11
+:-  %noun                                               ::  12
+=<  (sum 1.000)                                         ::  13
+::                                                      ::  14
+|%                                                      ::  15
+++  three                                               ::  16
+  |=  a/@                                               ::  17
+  =|  b/@                                               ::  18
+  |-  ^-  @u                                            ::  19
+  ?:  (lth a b)                                         ::  20
+    0                                                   ::  21
+  (add b $(b (add 3 b)))                                ::  22
+::                                                      ::  23
+++  five                                                ::  24
+  |=  a/@                                               ::  25
+  =|  b/@                                               ::  26
+  |-  ^-  @                                             ::  27
+  ?:  (lte a b)                                         ::  28
+    0                                                   ::  29
+  ?:  =((mod b 3) 0)                                    ::  30
+    $(b (add b 5))                                      ::  31
+  (add b $(b (add b 5)))                                ::  32
+::                                                      ::  33
+++  sum                                                 ::  34
+  |=  a/@u                                              ::  35
+  (add (five a) (three a))                              ::  36
+--                                                      ::  37
+```
 
 > Hoon is not generally whitespace sensitive, but we do have two
 > different kinds of whitespace: a single space and a gap, which is two
@@ -139,9 +141,11 @@ Here is the hoon solution (which should be in your pier directory under
 
 Any line that begins with `::` is a comment.
 
-    :-  %say  |=  *  
-    :-  %noun
-    =<  (sum 1.000)
+```
+:-  %say  |=  *                                         ::  11
+:-  %noun                                               ::  12
+=<  (sum 1.000)                                         ::  13
+```
 
 All you need to know about the lines above is that they call the `++sum`
 function with an argument of `1.000`. We'll cover them in more detail
@@ -156,11 +160,14 @@ other runes or literals that produce their own value (some runes take
 *N* children, and are usually closed with `==`).
 
 For example, the rune `?:` from line 20 is the classic 'if-then-else' statement,
-and thus takes three children:
+and thus takes three children. If the first child evaluates to true, produce 
+the result of the second child. Else, produce the result of the third child.
 
-      ?:  (lth a b)           ::  if first child evals to true
-        0                     ::  then produce result of second
-      (add b $(b (add 3 b)))  ::  else, produce result of third
+```
+?:  (lth a b)                                           ::  20
+  0                                                     ::  21
+(add b $(b (add 3 b)))                                  ::  22
+```
 
 Since runes are such a fundamental structure in Hoon, we found ourselves
 speaking them out loud frequently. It quickly grew cumbersome to have to
@@ -172,18 +179,20 @@ remembered and easily pronounced in conjunction with the other glyphs
 
 See the entire naming scheme below.
 
-        ace [1 space]   gal <               pal (
-        bar |           gap [>1 space, nl]  par )
-        bas \           gar >               sel [
-        buc $           hax #               sem ;
-        cab _           hep -               ser ]
-        cen %           kel {               sig ~
-        col :           ker }               soq '
-        com ,           ket ^               tar *
-        doq "           lus +               tec `
-        dot .           pam &               tis =
-        fas /           pat @               wut ?
-        zap !
+```
+ace [1 space]   gal <               pal (
+bar |           gap [>1 space, nl]  par )
+bas \           gar >               sel [
+buc $           hax #               sem ;
+cab _           hep -               ser ]
+cen %           kel {               sig ~
+col :           ker }               soq '
+com ,           ket ^               tar *
+doq "           lus +               tec `
+dot .           pam &               tis =
+fas /           pat @               wut ?
+zap !
+```
 
 Using this scheme, we would pronounce `?:` as 'wutcol'.
 
@@ -204,10 +213,12 @@ Let's step into each of the three arms within our core.
 
 ### `++  sum`
 
-    ++  sum
-      |=  a/@u
-      (add (five a) (three a))
-    --
+```
+++  sum                                                 ::  34
+  |=  a/@u                                              ::  35
+  (add (five a) (three a))                              ::  36
+--                                                      ::  37
+```
 
 `|=` ('[bartis](../../hoon/twig/bar-core/tis-gate/)') produces a function, much like a lambda in lisp. It
 takes two children:
@@ -223,13 +234,15 @@ takes two children:
 
 ### ++ three
 
-    ++  three
-      |=  a/@
-      =|  b/@
-      |-  ^-  @u
-      ?:  (lth a b)
-        0
-      (add b $(b (add 3 b)))
+```
+++  three                                               ::  16
+  |=  a/@                                               ::  17
+  =|  b/@                                               ::  18
+  |-  ^-  @u                                            ::  19
+  ?:  (lth a b)                                         ::  20
+    0                                                   ::  21
+  (add b $(b (add 3 b)))                                ::  22
+```
 
 As above, `++three` takes an integer argument, `a`, and then executes
 the remainder of the code with `a` set to the actual arguments.
