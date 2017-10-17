@@ -16,17 +16,17 @@ text, but there's no predefined mark for it.  Let's put the following code in:
 `/mar/examples/cord.hoon`:
 
 ```
-/?  314
-|_  cod/@t
-++  grab
-  |%
-  ++  atom  |=(arg/@ `@t`(scot %ud arg))
-  --
-++  grow
-  |%
-  ++  atom  `@`cod
-  --
---
+/?  314                                                 ::  1
+|_  cod/@t                                              ::  2
+++  grab                                                ::  3
+  |%                                                    ::  4
+  ++  atom  |=(arg/@ `@t`(scot %ud arg))                ::  5
+  --                                                    ::  6
+++  grow                                                ::  7
+  |%                                                    ::  8
+  ++  atom  `@`cod                                      ::  9
+  --                                                    ::  10
+--                                                      ::  11
 ```
 
 `/?  314` is the required version number, just like in apps. After that 
@@ -67,15 +67,21 @@ conversions, in that they refer to the same concept. They're not isomorphisms.
 
 We can add as many arms as we'd like to both `++grab` and `++grow`. Let's add 
 an arm to `++grow` which allows us to convert cords to markdown. Our 
-`cord.hoon` file's `++grow` arm should now look like this:
+`cord.hoon` file should now look like this:
 
 ```
-++  grow
-  |%
-  ++  atom  (@ cod)
-  ++  md  cod
-  --
---
+/?  314                                                 ::  1
+|_  cod/@t                                              ::  2
+++  grab                                                ::  3
+  |%                                                    ::  4
+  ++  atom  |=(arg/@ `@t`(scot %ud arg))                ::  5
+  --                                                    ::  6
+++  grow                                                ::  7
+  |%                                                    ::  8
+  ++  atom  `@`cod                                      ::  9
+  ++  md  cod                                           ::  10
+  --                                                    ::  11
+--                                                      ::  12
 ```
 
 We've added a new arm `++md` to our `++grow` arm. It simply converts our 
@@ -116,15 +122,11 @@ This is a mime-typed octet stream with type `/text/html`, length 121 bytes,
 and our lowly number `17` rendered to a web page. `examples-cord` was just one 
 step in the chain.
 
-Notice that we must be explicit with our mark conversions. Why won't this work, for 
+Notice that we must be _explicit_ with our mark conversions. Why won't this work, for 
 example?
 
 ```
 ~fintud-macrep:dojo> &examples-cord 17
-ford: no noun: [%examples-cord p=~fintud-macrep q=%examples r=[%ud p=26]]
-ford: check [%examples-cord [p=~fintud-macrep q=%examples r=[%ud p=26]] ~mirtyn-dabset]
-ford: casting %noun to %examples-cord
-ford: cast %examples-cord
 ```
 
 Using marks, we've been able to convert, step-by-step, a lowly atom of `17` 
