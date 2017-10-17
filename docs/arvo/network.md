@@ -11,9 +11,9 @@ Network messages
 Now we've learned enough Hoon to do more interesting things. Let's get
 our planets to talk to each other.
 
-All we've written up until now are just shell commands that produce a
-value and then disappear. To listen for and receive messages from other
-planets, we'll need an app. Let's look at a very simple one:
+All we've written up until now are just shell commands that produce a value and
+then disappear. To listen for and receive messages from other planets, we'll
+need an app. Let's look at a very simple one, `echo.hoon`:
 
     ::  Accepts any noun from dojo and prints it out
     ::
@@ -108,9 +108,8 @@ only accept a number, and then print out the square of that number.
     --                          
 
 A few things have changed. Firstly, we no longer accept arbitrary nouns because
-we can only square atoms (integers, in this case an unsigned one). Thus, our 
-argument is now `tom/@`. Secondly, it's `++poke-atom` rather than 
-`++poke-noun`.
+we can only square atoms (integers, in this case an unsigned one). Thus, our
+argument is now `tom/@`. Secondly, it's `++poke-atom` rather than `++poke-noun`.
 
 Intro to marks
 ==============
@@ -199,23 +198,23 @@ Run it with these commands:
 Replace `~sampel-sipnym` with another urbit. The easiest thing to do is to start
 a comet, a free and disposable Urbit identity. If you don't know how to start a
 comet, see [the user setup section](/docs/using/setup/). Don't forget to start
-the `%pong` app on that urbit, too. You should see, on the foreign urbit, this 
-output:
+the `%pong` app on that urbit, too. You should see, on the foreign
+urbit, this output:
 
     [%pong 'Incoming pong!']
     [%pong %received 'Pong']
 
 Most of the code should be straightforward. In `++poke-atom`, the only new thing
-is the expression `` `@t`tom ``, which is casting the argument `tom` to type 
-`@t`. As we already know, `@t` is the type of "cord" (text strings). In Hoon, 
-when types are called using tick marks or like a function (`(@t tom)`), they 
-serve as a validator function called a "clam" -- that is, a function whose 
-domain is all nouns, and range is the given type (in this case, `@t`).
-
-In simpler terms, if a clam is passed a value of its own type, it produces that
-value. Otherwise, it produces the default value (aka the "bunt") of its type.
-Here we call this `@t` function on the argument. This coerces the argument to
-text, so that we can print it out prettily no matter what we're passed.
+is the expression `` `@t`tom ``, which is *casting* the argument `tom` to type 
+`@t`. As we already know, `@t` is the type of "cord" (text string). In Hoon, 
+another way to perform a kind of casting is to use a type as a function, like 
+this: `(@t tom)`. When types are called like this, they are called "clams", 
+and they serve as validator functions-- that is, functions whose domain is all 
+nouns, and range is the given type (in this case, `@t`). Clams will "bunt" the 
+default value of the mold whereas casts (`@t`tom) may `nest-fail` if the 
+argument passed to it does not fit. An example of such a failure case is 
+passing a cell to an atom: `` `@`[1 2] ``. Using a clam here instead 
+(`(@ [1 2])`) will bunt the default value of `@`, which is `0`. Try it in dojo!
 
 The more interesting part is in `++poke-urbit`. The `urbit` mark is an urbit
 identity, and the Hoon type associated with it is `ship` or `@p` (the "p" 
@@ -298,10 +297,10 @@ an app. Other common names include `%warp`, to read from the filesystem;
 `%wait`, to set a timer; and `%them`, to send an http request.
 
 The move ends with `*` (that is, any noun) since each type of move takes
-different data. In our case, a `%poke` move takes a target (urbit and
-app) and marked data, then pokes the arm of the corresponding mark on
-that app on that urbit with that data. `[to-urbit-address %pong]` is the
-target urbit and app, `%atom` is the `mark`, and`'howdy'` is the data.
+different data. In our case, a `%poke` move takes a target (urbit and app) and
+marked data, then pokes the arm of the corresponding mark on that app on that
+urbit with that data. `[to-urbit-address %pong]` is the target urbit and app,
+`%atom` is the `mark`, and`'Pong'` is the data.
 
 When Arvo receives a `%poke` move, it calls the appropriate `++poke`.
 The same mechanism is used for sending messages between apps on the same
@@ -317,7 +316,7 @@ urbit as for sending messages between apps on different urbits.
 -   Extend either of the apps in the first two exercises to accept input
     over the network in the same way as `pong`.
 
--   Modify `examples-pong` to print out a message when it receives
+-   Modify `pong.hoon` to print out a message when it receives
     acknowledgement.
 
 -   Write two apps, `even` and `odd`. When you pass an atom to `even`,
