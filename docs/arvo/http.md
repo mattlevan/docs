@@ -221,13 +221,17 @@ Let's try it out:
 ~fintud-macrep:dojo/examples> :up &atom 'http://www.google.com'
 >=
 [%all-is-well 200]
+'arrive here'
 [%all-is-well 200]
+'arrive here'
 ~fintud-macrep:dojo/examples> :up &atom 'http://example.com'
 >=
 [%all-is-well 200]
+'arrive here'
 ~fintud-macrep:dojo/examples> :up &atom 'http://google.com'
 >=
 [%we-have-a-problem 301]
+'arrive here'
 [ %headers
   ~[
     [p='X-Frame-Options' q='SAMEORIGIN']
