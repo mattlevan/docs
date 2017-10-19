@@ -64,57 +64,57 @@ We'll need a new mark for our arguments. Let's call it `ping-message`.
 > is written in `/examples/mar/ping/message.hoon`.
 
 ```
-::  A message you ping another ship with
-::
-::::  /===/mar/ping/message/hoon
-  ::
-/-  ping-message
-!:
-|_  ping-message
-++  grab
-  |%
-  ++  noun
-    ping-message
-  --
---
-```
+::  A message you ping another ship with                ::  1
+::                                                      ::  2
+::::  /===/mar/ping/message/hoon                        ::  3
+  ::                                                    ::  4
+/-  ping-message                                        ::  5
+!:                                                      ::  6
+|_  ping-message                                        ::  7
+++  grab                                                ::  8
+  |%                                                    ::  9
+  ++  noun                                              ::  10
+    ping-message                                        ::  11
+  --                                                    ::  12
+--                                                      ::  13
+```                                                         
 
 The app can easily be modified to use this (`/app/examples/ping.hoon`):
 
 ```
-::  Allows one ship to ping another with a string of text
-::
-::::  /===/app/ping/hoon
-  ::
-/-  ping-message
-::
-!:
-|%
-++  move  {bone card}
-++  card  $%  {$poke wire dock poke-contents}
-          ==
-++  poke-contents $%  {$atom @}
-                  ==
---
-|_  {bow/bowl $}
-::
-++  poke-ping-message
-  |=  ping-message
-  ~&  ping+'Message sent!'
-  ^-  {(list move) _+>.$}
-  :_  +>.$
-  :_  ~
-  [ost.bow %poke /sending [to dap.bow] %atom message]
-::
-++  poke-atom
-  |=  arg/@
-  ~&  ping+'Message received!'
-  ^-  {(list move) _+>.$}
-  ~7  ping+message+(@t arg)
-  [~ +>.$]
-::
-++  coup  |=(* `+>)
---
+::  Allows one ship to ping another with a string       ::  1
+::                                                      ::  2
+::::  /===/app/ping/hoon                                ::  3
+  ::                                                    ::  4
+/-  ping-message                                        ::  5
+::                                                      ::  6
+!:                                                      ::  7
+|%                                                      ::  8
+++  move  {bone card}                                   ::  9
+++  card  $%  {$poke wire dock poke-contents}           ::  10
+          ==                                            ::  11
+++  poke-contents $%  {$atom @}                         ::  12
+                  ==                                    ::  13
+--                                                      ::  14
+|_  {bow/bowl $}                                        ::  15
+::                                                      ::  16
+++  poke-ping-message                                   ::  17
+  |=  ping-message                                      ::  18
+  ~&  ping+'Message sent!'                              ::  19
+  ^-  {(list move) _+>.$}                               ::  20
+  :_  +>.$                                              ::  21
+  :_  ~                                                 ::  22
+  [ost.bow %poke /sending [to dap.bow] %atom message]   ::  23
+::                                                      ::  24
+++  poke-atom                                           ::  25
+  |=  arg/@                                             ::  26
+  ~&  ping+'Message received!'                          ::  27
+  ^-  {(list move) _+>.$}                               ::  28
+  ~7  ping+message+(@t arg)                             ::  29
+  [~ +>.$]                                              ::  30
+::                                                      ::  31
+++  coup  |=(* `+>)                                     ::  32
+--                                                      ::  33
 ```
 
 Now we can run this with:
