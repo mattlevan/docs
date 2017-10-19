@@ -18,7 +18,7 @@ There'll be a button to poke the app, and line of text below it saying how
 many times the app has been poked. We can update this by subscribing our page 
 to the relevant path on its app.
 
-Let's first checkout the app `examples/app/click.hoon`:
+Let's first checkout the app `/examples/app/click.hoon`:
 
 ```
 ::  Poke your urbit from the web                        ::  1
@@ -137,7 +137,7 @@ ford: casting %json to %click
 ford: cast %click
 ```
 
-And `/mar/examples/click/clicks.hoon`:
+And `/examples/mar/click/clicks.hoon`:
 
 ```
 ::  Total number of clicks                              ::  1
