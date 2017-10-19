@@ -28,9 +28,9 @@ Another generator is `+hood/merge`. Try running `+hood/merge` with the normal
 arguments for `|merge`:
 
 ```
-~fintud-macrep:dojo> +hood/merge %home our %they
+~fintud-macrep:dojo/examples> +hood/merge %home our %they
 [syd=%home her=~fintud-macrep sud=%they gem=%auto]
-~fintud-macrep:dojo> +hood/merge %home our %they, =gem %this
+~fintud-macrep:dojo/examples> +hood/merge %home our %they, =gem %this
 [syd=%home her=~fintud-macrep sud=%they gem=%auto]
 ```
 
@@ -120,9 +120,9 @@ The app can easily be modified to use this (`/app/examples/ping.hoon`):
 Now we can run this with:
 
 ```
-~fintud-macrep:dojo> |start %ping
+~fintud-macrep:dojo/examples> |start %ping
 >=
-~fintud-macrep:dojo> :ping &ping-message [~sampel-sipnym 'heyya']
+~fintud-macrep:dojo/examples> :ping &ping-message [~sampel-sipnym 'heyya']
 >=
 ```
 
@@ -168,9 +168,9 @@ Secondly, `?~(a b c)` is a rune which means "if the `a` is null, do `b`, else
 This is run as follows:
 
 ```
-~fintud-macrep:dojo> :ping|send ~sampel-sipnym
+~fintud-macrep:dojo/examples> :ping|send ~sampel-sipnym
 >=
-~fintud-macrep:dojo> :ping|send ~sampel-sipnym 'how do you do'
+~fintud-macrep:dojo/examples> :ping|send ~sampel-sipnym 'how do you do'
 >=
 ```
 

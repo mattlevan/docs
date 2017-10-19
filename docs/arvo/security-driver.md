@@ -36,7 +36,7 @@ Here, we'll build a connector for the Github API v3.  The
 simplest way to interact with the Github API is to just fetch
 https://api.github.com from the dojo:
 
-    ~your-urbit:dojo> +https://api.github.com
+    ~your-urbit:dojo/examples> +https://api.github.com
 
 Github exposes a few endpoints to the general web, and the root
 endpoint is one of them.  This gives you a textual representation
@@ -87,7 +87,7 @@ you're logged in as.
 
 You can similarly POST:
 
-    ~your-urbit:dojo> +https://api.github.com/gists &json _(cork poja need) '{"files":{"file1.txt":{"content":"can\'t stop the signal"}}}'
+    ~your-urbit:dojo/examples> +https://api.github.com/gists &json _(cork poja need) '{"files":{"file1.txt":{"content":"can\'t stop the signal"}}}'
 
 This creates a gist, go to `https://gist.github.com/<username>` to
 see it.

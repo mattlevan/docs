@@ -125,13 +125,13 @@ We can test this mark from the command line (don't forget to start your app
 with `|start %click`).
 
 ```
-~fintud-macrep:dojo> &click-click %click
+~fintud-macrep:dojo/examples> &click-click %click
 %click
-~fintud-macrep:dojo> &click-click &json [%s 'click']
+~fintud-macrep:dojo/examples> &click-click &json [%s 'click']
 %click
-~fintud-macrep:dojo> &click-click &json &mime [/text/json (taco '"click"')]
+~fintud-macrep:dojo/examples> &click-click &json &mime [/text/json (taco '"click"')]
 %click
-~fintud-macrep:dojo> &click-click &json &mime [/text/json (taco '"clickety"')]
+~fintud-macrep:dojo/examples> &click-click &json &mime [/text/json (taco '"clickety"')]
 /~fintud-macrep/home/0/mar/click:<[7 5].[8 11]>
 ford: casting %json to %click
 ford: cast %click
@@ -164,7 +164,7 @@ a single field "clicks" with our value.
 > produces a JSON object with one element.
 
 ```
-~fintud-macrep:dojo> &json &click-clicks 6
+~fintud-macrep:dojo/examples> &json &click-clicks 6
 [%o p={[p='clicks' q=[%n p=~.6]]}]
 ```
 
@@ -173,12 +173,12 @@ Everything should be pretty straightforward. Let's poke the app from the
 command line.
 
 ```
-~fintud-macrep:dojo> |start %click
+~fintud-macrep:dojo/examples> |start %click
 >=
-~fintud-macrep:dojo> :click &click-click %click
+~fintud-macrep:dojo/examples> :click &click-click %click
 [%click %clicked 1]
 >=
-~fintud-macrep:dojo> :click &click-click %click
+~fintud-macrep:dojo/examples> :click &click-click %click
 [%click %clicked 2]
 >=
 ```

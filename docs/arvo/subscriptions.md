@@ -186,29 +186,29 @@ Cheat sheet:
 Here's some sample output of the two working together:
 
 ```
-~fintud-macrep:dojo> |start %source
+~fintud-macrep:dojo/examples> |start %source
 >=
-~fintud-macrep:dojo> |start %sink
+~fintud-macrep:dojo/examples> |start %sink
 >=
-~fintud-macrep:dojo> :sink %on
+~fintud-macrep:dojo/examples> :sink %on
 [%source %peer-notify 'Someone subscribed to you!']
 [%source [%ship ~fintud-macrep] %path /]
 [%sink %success 'Peer succeeded!']
 >=
-~fintud-macrep:dojo> :source 5
+~fintud-macrep:dojo/examples> :source 5
 [%sink %received-data 'You got something!']
 [%sink %data 5]
 >=
-~fintud-macrep:dojo> :sink %off
+~fintud-macrep:dojo/examples> :sink %off
 >=
-~fintud-macrep:dojo> :source 6
+~fintud-macrep:dojo/examples> :source 6
 >=
-~fintud-macrep:dojo> :sink %on
+~fintud-macrep:dojo/examples> :sink %on
 [%source %peer-notify 'Someone subscribed to you!']
 [%source [%ship ~fintud-macrep] %path /]
 [%sink %success 'Peer succeeded!']
 >=
-~fintud-macrep:dojo> :source 7
+~fintud-macrep:dojo/examples> :source 7
 [%sink %received-data 'You got something!']
 [%sink %data 7]
 >=

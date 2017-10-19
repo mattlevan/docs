@@ -53,11 +53,11 @@ Let's play around a bit with this mark. First, let's take a marked atom and
 convert it to our new mark.
 
 ```
-~fintud-macrep:dojo> &atom 9
+~fintud-macrep:dojo/examples> &atom 9
 9
-~fintud-macrep:dojo> &examples-cord &atom 9
+~fintud-macrep:dojo/examples> &examples-cord &atom 9
 '9'
--~fintud-macrep:dojo> &examples-cord &atom &examples-cord &atom 9
+~fintud-macrep:dojo/examples> &examples-cord &atom &examples-cord &atom 9
 '57'
 ```
 
@@ -93,9 +93,9 @@ What we should be able to do now is convert from `cord` to `md`.
 Let's play around a little more, having added our new `++md` arm:
 
 ```
-~fintud-macrep:dojo> &md &examples-cord &atom 17
+~fintud-macrep:dojo/examples> &md &examples-cord &atom 17
 '17'
-~fintud-macrep:dojo> &hymn &md &examples-cord &atom 17
+~fintud-macrep:dojo/examples> &hymn &md &examples-cord &atom 17
 [ [%html ~]
   [[%head ~] [[%title ~] [[%~. [%~. "Untitled"] ~] ~] ~] ~]
   [ [%body ~]
@@ -114,7 +114,7 @@ to deduce what's going on. Let's do the final step in the conversion, and
 produce some real html code.
 
 ```
-~fintud-macrep:dojo> &mime &hymn &md &examples-cord &atom 17
+~fintud-macrep:dojo/examples> &mime &hymn &md &examples-cord &atom 17
 [[%text %html ~] p=71 q='<html><head><title>Untitled</title></head><body><p>17</p></body></html>']
 ```
 
@@ -126,7 +126,7 @@ Notice that we must be _explicit_ with our mark conversions. Why won't this work
 example?
 
 ```
-~fintud-macrep:dojo> &examples-cord 17
+~fintud-macrep:dojo/examples> &examples-cord 17
 ```
 
 Using marks, we've been able to convert, step-by-step, a lowly atom of `17` 

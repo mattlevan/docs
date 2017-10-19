@@ -42,12 +42,12 @@ the app, then you can poke it from the command line with the following
 commands:
 
 ```
-~fintud-macrep:dojo> |start %echo
+~fintud-macrep:dojo/examples> |start %echo
 >=
-~fintud-macrep:dojo> :echo 5
+~fintud-macrep:dojo/examples> :echo 5
 [%echo %noun 5]
 >=
-~fintud-macrep:dojo> :echo [1 2]
+~fintud-macrep:dojo/examples> :echo [1 2]
 [%echo %noun [1 2]]
 >=
 ```
@@ -139,11 +139,11 @@ expecting an atom, so we have to explicitly mark the data with `atom`
 using `&[mark]`. Try the following commands:
 
 ```
-~fintud-macrep:dojo> |start %square
+~fintud-macrep:dojo/examples> |start %square
 >=
-~fintud-macrep:dojo> :square 6
+~fintud-macrep:dojo/examples> :square 6
 gall: %square: no poke arm for noun
-~fintud-macrep:dojo> :square &atom 6
+~fintud-macrep:dojo/examples> :square &atom 6
 [%square 36]
 >=
 ```
@@ -201,9 +201,9 @@ Let's write our first network message! Here's `examples/app/pong.hoon`:
 Run it with these commands:
 
 ```
-~fintud-macrep:dojo> |start %pong
+~fintud-macrep:dojo/examples> |start %pong
 >=
-~fintud-macrep:dojo> :pong &urbit ~sampel-sipnym
+~fintud-macrep:dojo/examples> :pong &urbit ~sampel-sipnym
 >=
 ```
 
@@ -348,7 +348,7 @@ urbit as for sending messages between apps on different urbits.
     between the two apps. Sample output:
 
 ```
-~fintud-macrep:dojo> :even &atom 18
+~fintud-macrep:dojo/examples> :even &atom 18
 [%even 18]
 [%odd 9]
 [%even 28]

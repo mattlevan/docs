@@ -26,7 +26,7 @@ app accomplishes both for Github.
 After starting `%gh` (`|start %gh`), let's look at the root of
 the tree that `%gh` exposes:
 
-    ~your-urbit:dojo> .^(arch %gy /=gh=)
+    ~your-urbit:dojo/examples> .^(arch %gy /=gh=)
     [fil=~ dir={[p=~.issues q=~]}]
 
 `%gh` is currently a skeleton -- it contains examples of all the
@@ -34,7 +34,7 @@ functionality necessary for a connector, but many endpoints
 aren't implemented.  As we can see here, only issues are
 implemented.  We can explore this tree:
 
-    ~your-urbit:dojo> .^(arch %gy /=gh=/issues)
+    ~your-urbit:dojo/examples> .^(arch %gy /=gh=/issues)
     [fil=~ dir={[p=~.by-repo q=~] [p=~.mine q=~]}]
 
 And eventually:

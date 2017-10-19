@@ -49,13 +49,13 @@ atoms we poke it with. Here's `examples/app/sum.hoon`:
 We can start it with `|start %sum`, and then run it:
 
 ```
-~fintud-macrep:dojo> :sum &atom 5
+~fintud-macrep:dojo/examples> :sum &atom 5
 [%sum 5]
 >=
-~fintud-macrep:dojo> :sum &atom 2
+~fintud-macrep:dojo/examples> :sum &atom 2
 [%sum 7]
 >=
-~fintud-macrep:dojo> :sum &atom 15
+~fintud-macrep:dojo/examples> :sum &atom 15
 [%sum 22]
 >=
 ```
@@ -119,13 +119,13 @@ to set up and write to a database.
 <!-- -->
 
 ```
-~fintud-macrep:dojo> :last 7
+~fintud-macrep:dojo/examples> :last 7
 [%last 0]
 >=
-~fintud-macrep:dojo> :last [1 2 3]
+~fintud-macrep:dojo/examples> :last [1 2 3]
 [%last 7]
 >=
-~fintud-macrep:dojo> :last 'howdy'
+~fintud-macrep:dojo/examples> :last 'howdy'
 [%last [1 2 3]]
 ```
 
