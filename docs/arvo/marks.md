@@ -11,9 +11,9 @@ We've used predefined marks already, but we haven't yet created our own marks.
 Let's write a sample mark of our own, then chain it together with some 
 preexisting ones to have fun with type conversions.
 
-Let's make a small "examples-cord" mark.  "Cord" is a name we use for `@t`
+Let's make a small "cord" mark. "Cord" is a name we use for `@t`
 text, but there's no predefined mark for it.  Let's put the following code in:
-`/mar/examples/cord.hoon`:
+`/examples/mar/cord.hoon`:
 
 ```
 /?  314                                                 ::  1
@@ -55,9 +55,9 @@ convert it to our new mark.
 ```
 ~fintud-macrep:dojo/examples> &atom 9
 9
-~fintud-macrep:dojo/examples> &examples-cord &atom 9
+~fintud-macrep:dojo/examples> &cord &atom 9
 '9'
-~fintud-macrep:dojo/examples> &examples-cord &atom &examples-cord &atom 9
+~fintud-macrep:dojo/examples> &cord &atom &cord &atom 9
 '57'
 ```
 
@@ -93,9 +93,9 @@ What we should be able to do now is convert from `cord` to `md`.
 Let's play around a little more, having added our new `++md` arm:
 
 ```
-~fintud-macrep:dojo/examples> &md &examples-cord &atom 17
+~fintud-macrep:dojo/examples> &md &cord &atom 17
 '17'
-~fintud-macrep:dojo/examples> &hymn &md &examples-cord &atom 17
+~fintud-macrep:dojo/examples> &hymn &md &cord &atom 17
 [ [%html ~]
   [[%head ~] [[%title ~] [[%~. [%~. "Untitled"] ~] ~] ~] ~]
   [ [%body ~]
@@ -114,23 +114,23 @@ to deduce what's going on. Let's do the final step in the conversion, and
 produce some real html code.
 
 ```
-~fintud-macrep:dojo/examples> &mime &hymn &md &examples-cord &atom 17
+~fintud-macrep:dojo/examples> &mime &hymn &md &cord &atom 17
 [[%text %html ~] p=71 q='<html><head><title>Untitled</title></head><body><p>17</p></body></html>']
 ```
 
 This is a mime-typed octet stream with type `/text/html`, length 121 bytes, 
-and our lowly number `17` rendered to a web page. `examples-cord` was just one 
+and our lowly number `17` rendered to a web page. `cord` was just one 
 step in the chain.
 
 Notice that we must be _explicit_ with our mark conversions. Why won't this work, for 
 example?
 
 ```
-~fintud-macrep:dojo/examples> &examples-cord 17
+~fintud-macrep:dojo/examples> &cord 17
 ```
 
 Using marks, we've been able to convert, step-by-step, a lowly atom of `17` 
 into a complete plain-text html blob. We started with the atom, passed it to 
-our `&examples-cord` (which we defined in `mar/examples/cord.hoon`), 
+our `&cord` (which we defined in `/examples/mar/cord.hoon`), 
 converted that to `&md`, then to `&hymn` and finally to `&mime`, resulting 
 in plain-text html.
