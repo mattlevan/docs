@@ -79,7 +79,7 @@ We'll need a new mark for our arguments. Let's call it `ping-message`.
 --                                                      ::  13
 ```                                                         
 
-The app can easily be modified to use this (`/app/examples/ping.hoon`):
+The app can easily be modified to use this (`/examples/app/ping.hoon`):
 
 ```
 ::  Allows one ship to ping another with a string       ::  1
