@@ -33,19 +33,25 @@ otherwise experiencing problems with the network install.
 
 In your urbit's `:dojo`, run the command:
 
-    ~your-urbit:dojo> |sync %examples ~ropmev-pocseb %examples
+```
+~your-urbit:dojo> |sync %examples ~ropmev-pocseb %examples
+```
 
 Depending on network traffic, this initial merge and sync could take anywhere
 between thirty seconds to several minutes. Upon a successful sync you'll see the
 output:
 
-    sync succeeded from %examples on ~ropmev-pocseb to %examples
+```
+sync succeeded from %examples on ~ropmev-pocseb to %examples
+```
 
 In which case, next run the commands:
 
-    ~your-urbit:dojo> =dir /=examples=
-    ~your-urbit:dojo/examples> |serve %/web
-    ~your-urbit:dojo/examples> |mount %
+```
+~your-urbit:dojo> =dir /=examples=
+~your-urbit:dojo/examples> |serve %/web
+~your-urbit:dojo/examples> |mount %
+```
 
 If your sync isn't succeeding after a few minutes for whatever reason, run
 `|cancel %examples` in your `:dojo` and follow the local install below instead.
@@ -54,10 +60,12 @@ If your sync isn't succeeding after a few minutes for whatever reason, run
 
 In your urbit's `:dojo`:
 
-    ~your-urbit:dojo> |merge %examples our %base, =gem %init
-    ~your-urbit:dojo> =dir /=examples=
-    ~your-urbit:dojo/examples> |serve %/web
-    ~your-urbit:dojo/examples> |mount %
+```
+~your-urbit:dojo> |merge %examples our %base, =gem %init
+~your-urbit:dojo> =dir /=examples=
+~your-urbit:dojo/examples> |serve %/web
+~your-urbit:dojo/examples> |mount %
+```
 
 If `~your-urbit` was installed at `/urbit/path` on your Unix machine, you can
 now find your `%examples` desk at the path `/urbit/path/your-urbit/examples`.
@@ -66,8 +74,10 @@ Lastly, in Unix, clone this repo somewhere and copy in the `examples` files to
 your urbit's new mounted `%examples` desk. You can run the following shell
 commands (*replacing your urbit's examples desk path as necessary*):
 
-    $ git clone https://github.com/urbit/examples
-    $ for dir in {app,gen,lib,mar,sec,sur,web}; do cp -r ./examples/$dir* /urbit/path/your-urbit/examples; done
+```
+$ git clone https://github.com/urbit/examples
+$ for dir in {app,gen,lib,mar,sec,sur,web}; do cp -r ./examples/$dir* /urbit/path/your-urbit/examples; done
+```
 
 Your `%clay` filesystem should acknowledge the newly added files.
 
@@ -75,18 +85,22 @@ Your `%clay` filesystem should acknowledge the newly added files.
 
 Run an example to ensure it worked:
 
-    ~fintud-macrep:dojo> +project-euler/p1
-    233.168
+```
+~fintud-macrep:dojo> +project-euler/p1
+233.168
+```
 
 Euler 1
 -------
 
 Let's check out the code for Euler 1. First, the problem:
 
-    If we list all the natural numbers below 10 that are multiples of
-    3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+```
+If we list all the natural numbers below 10 that are multiples of
+3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
 
-    Find the sum of all the multiples of 3 or 5 below 1000.
+Find the sum of all the multiples of 3 or 5 below 1000.
+```
 
 Here is the hoon solution (which should be in your pier directory under
 `/examples/gen/project-euler/p1`):

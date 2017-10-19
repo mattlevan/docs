@@ -47,7 +47,7 @@ commands:
 ~fintud-macrep:dojo> :echo 5
 [%echo %noun 5]
 >=
-~fintud-macrep:dojo> :examples-echo [1 2]
+~fintud-macrep:dojo> :echo [1 2]
 [%echo %noun [1 2]]
 >=
 ```
