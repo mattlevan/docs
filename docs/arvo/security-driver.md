@@ -47,12 +47,13 @@ what we care about requires us to be authenticated.
 
 ## Basic auth
 
-Here's a simple security driver (`/examples/sec/com/github.hoon`):
+Here's a simple security driver (`/=home=/sec/com/github/hoon`-- note: you 
+might have to mount the home desk with `|mount /=home=` if it isn't already):
 
 ```
 ::  Test url +https://api.github.com/user
 ::
-::::  /===/sec/github/hoon
+::::  /hoon/github/com/sec
   ::
 /+  basic-auth
 !:
@@ -65,7 +66,7 @@ Here's a simple security driver (`/examples/sec/com/github.hoon`):
 GitHub supports authentication through either Basic Authentication or OAuth2. 
 We'll show the basic auth example first, but in general we'd prefer OAuth2.
 
-Since this driver is for GitHub, it lives in `/=examples=/sec/com/github/hoon`.
+Since this driver is for GitHub, it lives in `/=home=/sec/com/github/hoon`.
 
 To try this out, we first have to initialize our credentials with 
 `|init-auth-basic`, which prompts for the url of the service (api.github.com), 
@@ -75,8 +76,8 @@ is standard for basic auth, but other auth schemes (like OAuth) are initialized
 in other ways.
 
 After you've run `|init-auth-basic`, you should be able to run
-`+https://api.github.com/user` and get a response indicating who
-you're logged in as.
+`+https://api.github.com/user` and get a response indicating who you're logged 
+in as.
 
 You can similarly POST:
 
@@ -168,8 +169,8 @@ a function `++out-adding-header`, which does exactly what we want.
 Where do the keys come from, though? Remember we ran `|init-auth-basic` to 
 input them. This just prompts you for the service url, username, and password, 
 and it stores them next to the driver. In our case, that's
-`/=home=/sec/com/gitub/api/atom`. These keys are stored encrypted, and you 
-don't want to edit them directly. `%eyre` loads them directly into your `bale`.
+`/=home=/sec/com/gitub/atom`. These keys are stored encrypted, and you don't 
+want to edit them directly. `%eyre` loads them directly into your `bale`.
 
 ## OAuth2
 
@@ -190,20 +191,21 @@ The basic steps for OAuth2 are these:
 
 Creating an app for GitHub is easy and 
 [well-documented](https://github.com/settings/applications/new).
-If necessary, set the callback url to `/~/ac/github.com/_state/in`, and note 
-its client id and client secret.
+Set the "Homepage URL" to `http://<your urbit ip>:8443` and leave the 
+"Authorization callback URL" blank. Note its client id and client secret as 
+well.
 
 Run `|init-oauth2`, which will prompt for the hostname (api.github.com), 
 client id, and client secret. This will store the information, encrypted, in 
-`/examples/sec/com/github.atom`, just as with Basic Authentication.
+`/=home=/sec/com/github/atom`, just as with Basic Authentication.
 
-Now we need a security driver. Let's use this to replace our old file 
-`/examples/sec/github.hoon`:
+Now we need a security driver. Let's replace our old 
+`/home/sec/com/github.hoon` with the following code:
 
 ```
 ::  Test url +https://api.github.com/user
 ::
-::::  /===/sec/github/hoon
+::::  /hoon/github/com/sec
   ::
 /+    oauth2
 !:
@@ -233,9 +235,9 @@ Now we need a security driver. Let's use this to replace our old file
 The oauth2 library provides the main "engine" in `standard`, just like in 
 basic auth, except that we also have to specify a function to save the access 
 token when we get it. It's worth noting that this library is well documented 
-in the source, including examples: `/=examples=/lib/oauth2/hoon`.
+in the source, including examples: `/=home=/lib/oauth2/hoon`.
 
-Running `+http://api.github.com/user` tries to make a request to GitHub with 
+Running `+https://api.github.com/user` tries to make a request to GitHub with 
 authentication. This loads into the bale the keys, which are of type 
 `keys:oauth2`, defined in the oauth2 library. We don't have to worry about the 
 specifics of these keys-- the library handles them-- but they include the 
