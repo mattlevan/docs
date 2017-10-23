@@ -192,7 +192,7 @@ The basic steps for OAuth2 are these:
 Creating an app for GitHub is easy and 
 [well-documented](https://github.com/settings/applications/new).
 Set the "Homepage URL" to `http://<your urbit ip>:8443` and leave the 
-"Authorization callback URL" blank. Note its client id and client secret as 
+"Authorization callback URL" blank. Note the client id and client secret as 
 well.
 
 Run `|init-oauth2`, which will prompt for the hostname (api.github.com), 
@@ -227,7 +227,7 @@ Now we need a security driver. Let's replace our old
 ::
 ++  receive-auth-query-string
   %-  in-code-to-token:aut
-  url='https://github.com/login/oauth/api/access_token'
+  url='https://github.com/login/oauth/access_token'
 ++  receive-auth-response  bak-save-token:aut
 --
 ```
